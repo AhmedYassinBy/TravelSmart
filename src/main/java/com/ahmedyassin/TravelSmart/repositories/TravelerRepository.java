@@ -1,0 +1,12 @@
+package com.ahmedyassin.TravelSmart.repositories;
+
+import com.ahmedyassin.TravelSmart.entities.Traveler;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface TravelerRepository extends JpaRepository<Traveler, UUID> {
+
+}
