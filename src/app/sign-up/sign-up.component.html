@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Smart - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      input::placeholder {
+        @apply text-gray-400;
+      }
+      input:focus {
+        @apply outline-none ring-2 ring-red-500 ring-offset-0;
+      }
+      button {
+        @apply transition-all duration-300 ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <div class="min-h-screen flex">
+      <!-- Left side - Form -->
+      <div
+        class="w-full lg:w-1/2 flex flex-col justify-center items-center bg-white px-6 py-12"
+      >
+        <div class="w-full max-w-md">
+          <!-- Logo -->
+          <div class="text-center mb-10">
+            <h1
+              class="text-4xl font-extrabold tracking-tight"
+              style="
+                font-family: 'Poppins', Inter, system-ui, -apple-system,
+                  'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+                color: #e11d48;
+              "
+            >
+              TRAVEL
+              <span style="color: #111827; margin-left: 6px; font-weight: 700"
+                >SMART</span
+              >
+            </h1>
+            <p class="text-gray-600 text-base">
+              Create a new account to get started
+            </p>
+          </div>
+
+          <!-- Signup Form -->
+          <form class="space-y-5" (ngSubmit)="register()" #signupForm="ngForm">
+            <!-- Username -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Username</label
+              >
+              <div class="flex">
+                <input
+                  [(ngModel)]="user.username"
+                  name="username"
+                  type="text"
+                  placeholder="johndoe"
+                  class="flex-1 px-4 py-3 border border-gray-300 text-sm bg-gray-50 hover:bg-white transition"
+                  required
+                />
+                <div class="flex items-center justify-center bg-red-600 px-4">
+                  <i class="fa-solid fa-user text-white text-lg"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- First Name -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >First Name</label
+              >
+              <div class="flex">
+                <input
+                  [(ngModel)]="user.firstName"
+                  name="firstName"
+                  type="text"
+                  placeholder="John"
+                  class="flex-1 px-4 py-3 border border-gray-300 text-sm bg-gray-50 hover:bg-white transition"
+                  required
+                />
+                <div class="flex items-center justify-center bg-red-600 px-4">
+                  <i class="fa-solid fa-id-card text-white text-lg"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Last Name -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Last Name</label
+              >
+              <div class="flex">
+                <input
+                  [(ngModel)]="user.lastName"
+                  name="lastName"
+                  type="text"
+                  placeholder="Doe"
+                  class="flex-1 px-4 py-3 border border-gray-300 text-sm bg-gray-50 hover:bg-white transition"
+                  required
+                />
+                <div class="flex items-center justify-center bg-red-600 px-4">
+                  <i class="fa-solid fa-id-badge text-white text-lg"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Email Address</label
+              >
+              <div class="flex">
+                <input
+                  [(ngModel)]="user.email"
+                  name="email"
+                  type="email"
+                  placeholder="alex@email.com"
+                  class="flex-1 px-4 py-3 border border-gray-300 text-sm bg-gray-50 hover:bg-white transition"
+                  required
+                />
+                <div class="flex items-center justify-center bg-red-600 px-4">
+                  <i class="fa-solid fa-envelope text-white text-lg"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Password</label
+              >
+              <div class="flex">
+                <input
+                  [(ngModel)]="user.password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  class="flex-1 px-4 py-3 border border-gray-300 text-sm bg-gray-50 hover:bg-white transition"
+                  required
+                />
+                <div class="flex items-center justify-center bg-red-600 px-4">
+                  <i class="fa-solid fa-lock text-white text-lg"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Confirm Password</label
+              >
+              <div class="flex">
+                <input
+                  [(ngModel)]="user.confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  class="flex-1 px-4 py-3 border border-gray-300 text-sm bg-gray-50 hover:bg-white transition"
+                  required
+                />
+                <div class="flex items-center justify-center bg-red-600 px-4">
+                  <i class="fa-solid fa-lock text-white text-lg"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error message -->
+            <p
+              *ngIf="errorMessage"
+              class="text-red-600 text-sm font-medium text-center"
+            >
+              {{ errorMessage }}
+            </p>
+
+            <!-- Signup Button -->
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              Create Account
+            </button>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 py-4">
+              <div class="flex-1 h-px bg-gray-300"></div>
+              <span
+                class="text-xs font-medium text-gray-400 uppercase tracking-wide"
+                >Or</span
+              >
+              <div class="flex-1 h-px bg-gray-300"></div>
+            </div>
+
+            <!-- Login Redirect -->
+            <button
+              routerLink="/login"
+              type="button"
+              class="w-full border-2 border-red-600 text-red-600 font-semibold py-3 rounded-lg hover:bg-red-50 transition-all"
+            >
+              Already have an account? Login
+            </button>
+          </form>
+
+          <!-- Footer -->
+          <p class="text-center text-sm text-gray-600 mt-8">
+            By signing up, you agree to our
+            <a href="#" class="text-red-600 hover:underline font-medium"
+              >Terms of Service</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <!-- Right side - Illustration -->
+      <div
+        class="hidden lg:flex w-1/2 items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-8"
+      >
+        <img
+          src="https://images.vexels.com/media/users/3/136367/isolated/preview/d28fd86bbca0666c03e8865d25c382cc-map-world-illustration-with-red-dot-and-lines.png"
+          alt="Signup Illustration"
+          class="w-full max-w-2xl object-contain drop-shadow-lg rounded-lg"
+        />
+      </div>
+    </div>
+  </body>
+</html>
