@@ -25,6 +25,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private AppUserDetailsService userDetailsService; // Correctement nommé et injecté
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        // Do not apply JWT filter on authentication endpoints (login, signup, password reset requests)
+        String path = request.getServletPath();
+        if (path.startsWith("/api/auth")) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 

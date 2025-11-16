@@ -36,7 +36,7 @@ public class UserService {
     private String mailFrom;
 
     // Frontend base URL used in reset password link (configurable)
-    @Value("${app.frontend.base-url:http://localhost:3000}")
+    @Value("${app.frontend.base-url:http://localhost:4200}")
     private String frontendBaseUrl;
 
     @Transactional
