@@ -1,0 +1,449 @@
+<!-- External Search Component -->
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 pb-12">
+
+    <!-- Hero Header -->
+    <div class="bg-white/80 backdrop-blur-md sticky top-0 z-30 border-b border-white/20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-black text-gray-900 flex items-center gap-3 tracking-tight">
+                        <span class="text-4xl">🌐</span>
+                        <span class="bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent">External
+                            API Search</span>
+                    </h1>
+                    <p class="mt-2 text-sm font-medium text-slate-500">Connect to global travel providers and import
+                        data instantly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modern Pills Tabs -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+            <div
+                class="flex space-x-2 bg-slate-100/50 p-1.5 rounded-2xl w-fit backdrop-blur-sm border border-slate-200/50">
+                <button (click)="setActiveTab('flights')" [class.bg-white]="activeTab === 'flights'"
+                    [class.text-blue-600]="activeTab === 'flights'" [class.shadow-md]="activeTab === 'flights'"
+                    [class.text-slate-500]="activeTab !== 'flights'"
+                    class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 hover:text-blue-600">
+                    <span>✈️</span> Flights
+                </button>
+                <button (click)="setActiveTab('hotels')" [class.bg-white]="activeTab === 'hotels'"
+                    [class.text-blue-600]="activeTab === 'hotels'" [class.shadow-md]="activeTab === 'hotels'"
+                    [class.text-slate-500]="activeTab !== 'hotels'"
+                    class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 hover:text-blue-600">
+                    <span>🏨</span> Hotels
+                </button>
+                <button (click)="setActiveTab('airports')" [class.bg-white]="activeTab === 'airports'"
+                    [class.text-blue-600]="activeTab === 'airports'" [class.shadow-md]="activeTab === 'airports'"
+                    [class.text-slate-500]="activeTab !== 'airports'"
+                    class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 hover:text-blue-600">
+                    <span>🛫</span> Airports
+                </button>
+                <button (click)="setActiveTab('airlines')" [class.bg-white]="activeTab === 'airlines'"
+                    [class.text-blue-600]="activeTab === 'airlines'" [class.shadow-md]="activeTab === 'airlines'"
+                    [class.text-slate-500]="activeTab !== 'airlines'"
+                    class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 hover:text-blue-600">
+                    <span>🦅</span> Airlines
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ==================== FLIGHTS TAB ==================== -->
+        <div *ngIf="activeTab === 'flights'" class="space-y-8 animate-fadeIn">
+            <!-- Glass Search Form -->
+            <div
+                class="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl shadow-blue-900/5 border border-white/50 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="group">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Origin</label>
+                        <div class="relative">
+                            <i class="fas fa-plane-departure absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="flightParams.origin" type="text"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all uppercase font-bold text-slate-700 placeholder-slate-400"
+                                placeholder="CDG">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Destination</label>
+                        <div class="relative">
+                            <i class="fas fa-plane-arrival absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="flightParams.destination" type="text"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all uppercase font-bold text-slate-700 placeholder-slate-400"
+                                placeholder="JFK">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Date</label>
+                        <div class="relative">
+                            <i class="fas fa-calendar absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="flightParams.departureDate" type="date"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all font-medium text-slate-700">
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button (click)="searchFlights()" [disabled]="isLoading"
+                            class="w-full h-[50px] bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <span *ngIf="isLoading" class="animate-spin">↻</span>
+                            {{ isLoading ? 'Searching...' : 'Search Flights' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div *ngIf="flights.length > 0" class="space-y-4">
+                <div class="flex items-center justify-between px-2">
+                    <h3 class="font-bold text-xl text-slate-800">{{ flights.length }} Flights Found</h3>
+                    <div class="flex gap-3">
+                        <button (click)="importSelectedFlights()"
+                            class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2">
+                            <i class="fas fa-download"></i> Import Selected ({{ selectedFlights.size }})
+                        </button>
+                        <button (click)="importAllFlights()"
+                            class="px-5 py-2.5 bg-white hover:bg-slate-50 text-slate-600 font-bold rounded-xl border border-slate-200 shadow-sm transition-all">
+                            Import All
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid gap-4">
+                    <div *ngFor="let flight of flights" [class.ring-2]="isFlightSelected(flight.flightNumber || '')"
+                        [class.ring-blue-500]="isFlightSelected(flight.flightNumber || '')"
+                        class="bg-white/80 backdrop-blur rounded-2xl p-5 border border-white/50 shadow-sm hover:shadow-md transition-all cursor-pointer group relative overflow-hidden"
+                        (click)="toggleFlightSelection(flight.flightNumber || '')">
+
+                        <div
+                            class="absolute top-0 left-0 w-1 h-full bg-blue-500 transform -translate-x-full group-hover:translate-x-0 transition-transform">
+                        </div>
+
+                        <div class="flex items-center gap-6">
+                            <!-- Checkbox -->
+                            <div class="relative z-10">
+                                <div class="w-6 h-6 rounded-lg border-2 border-slate-300 flex items-center justify-center transition-colors"
+                                    [class.bg-blue-500]="isFlightSelected(flight.flightNumber || '')"
+                                    [class.border-blue-500]="isFlightSelected(flight.flightNumber || '')">
+                                    <i class="fas fa-check text-white text-xs"
+                                        *ngIf="isFlightSelected(flight.flightNumber || '')"></i>
+                                </div>
+                            </div>
+
+                            <!-- Flight Info -->
+                            <div class="flex-1 grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+                                <div>
+                                    <div class="font-black text-lg text-slate-800">{{ flight.airlineName }}</div>
+                                    <div
+                                        class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-md w-fit mt-1">
+                                        {{ flight.flightNumber }}</div>
+                                </div>
+
+                                <div class="col-span-2 flex items-center gap-6">
+                                    <div class="text-right">
+                                        <div class="text-2xl font-black text-slate-800">{{ flight.departureAirportCode
+                                            }}</div>
+                                        <div class="text-xs font-semibold text-slate-400">{{ flight.departureTime |
+                                            date:'shortTime' }}</div>
+                                    </div>
+
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="text-xs font-bold text-slate-400 mb-1">{{ flight.duration }}</div>
+                                        <div class="w-full h-0.5 bg-slate-200 relative">
+                                            <div
+                                                class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-slate-300">
+                                            </div>
+                                            <div
+                                                class="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-slate-300">
+                                            </div>
+                                            <i
+                                                class="fas fa-plane text-blue-400 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 transform rotate-90 text-xs"></i>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="text-2xl font-black text-slate-800">{{ flight.arrivalAirportCode }}
+                                        </div>
+                                        <div class="text-xs font-semibold text-slate-400">{{ flight.arrivalTime |
+                                            date:'shortTime' }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="text-right">
+                                    <div class="text-2xl font-black text-emerald-600">{{ flight.price |
+                                        currency:flight.currency }}</div>
+                                    <div class="text-xs font-bold text-slate-400">{{ flight.availableSeats }} seats
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div *ngIf="!isLoading && flights.length === 0"
+                class="flex flex-col items-center justify-center py-20 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
+                <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-plane-slash text-3xl text-blue-300"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-700">No flights found</h3>
+                <p class="text-slate-500">Try adjusting your search filters</p>
+            </div>
+        </div>
+
+        <!-- ==================== HOTELS TAB ==================== -->
+        <div *ngIf="activeTab === 'hotels'" class="space-y-8 animate-fadeIn">
+            <div
+                class="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl shadow-blue-900/5 border border-white/50 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="group">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">City</label>
+                        <div class="relative">
+                            <i class="fas fa-city absolute left-4 top-3.5 text-blue-400"></i>
+                            <select [(ngModel)]="hotelCityCode"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 cursor-pointer">
+                                <option *ngFor="let city of cityCodes" [value]="city.code">{{ city.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Check-in</label>
+                        <div class="relative">
+                            <i class="fas fa-calendar-alt absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="checkinDate" type="date"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all font-medium text-slate-700">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Check-out</label>
+                        <div class="relative">
+                            <i class="fas fa-calendar-check absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="checkoutDate" type="date"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all font-medium text-slate-700">
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button (click)="searchHotels()" [disabled]="isLoading"
+                            class="w-full h-[50px] bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <span *ngIf="isLoading" class="animate-spin">↻</span>
+                            {{ isLoading ? 'Searching...' : 'Search Hotels' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Results -->
+            <div *ngIf="hotels.length > 0" class="space-y-4">
+                <div class="flex items-center justify-between px-2">
+                    <h3 class="font-bold text-xl text-slate-800">{{ hotels.length }} Hotels Found</h3>
+                    <div class="flex gap-3">
+                        <button (click)="importSelectedHotels()"
+                            class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2">
+                            <i class="fas fa-download"></i> Import Selected ({{ selectedHotels.size }})
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div *ngFor="let hotel of hotels" [class.ring-2]="isHotelSelected(hotel.hotelId || '')"
+                        [class.ring-blue-500]="isHotelSelected(hotel.hotelId || '')"
+                        class="bg-white/80 backdrop-blur rounded-2xl overflow-hidden border border-white/50 shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col h-full"
+                        (click)="toggleHotelSelection(hotel.hotelId || '')">
+
+                        <!-- Image Area -->
+                        <div class="h-48 bg-slate-200 relative overflow-hidden">
+                            <img *ngIf="hotel.imageUrl" [src]="hotel.imageUrl"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div *ngIf="!hotel.imageUrl"
+                                class="absolute inset-0 flex items-center justify-center bg-slate-100 text-slate-300">
+                                <i class="fas fa-hotel text-5xl"></i>
+                            </div>
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                                <span class="text-yellow-500">★</span> {{ hotel.stars || 'N/A' }}
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <div class="w-8 h-8 rounded-lg border-2 border-white bg-black/20 backdrop-blur flex items-center justify-center transition-colors"
+                                    [class.bg-blue-600]="isHotelSelected(hotel.hotelId || '')"
+                                    [class.border-blue-600]="isHotelSelected(hotel.hotelId || '')">
+                                    <i class="fas fa-check text-white text-sm"
+                                        *ngIf="isHotelSelected(hotel.hotelId || '')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-5 flex-1 flex flex-col">
+                            <h4 class="font-bold text-lg text-slate-800 line-clamp-1 mb-1">{{ hotel.name }}</h4>
+                            <p class="text-sm text-slate-500 mb-4 flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                {{ hotel.city }}, {{ hotel.country }}
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span *ngFor="let am of hotel.amenities?.slice(0, 3)"
+                                    class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-md">
+                                    {{ am }}
+                                </span>
+                                <span *ngIf="hotel.amenities && hotel.amenities.length > 3"
+                                    class="px-2 py-1 bg-slate-100 text-slate-400 text-xs font-semibold rounded-md">+{{
+                                    hotel.amenities.length - 3 }}</span>
+                            </div>
+
+                            <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                                    {{ hotel.rating ? hotel.rating + '/10' : 'No Rating' }}
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-green-600 font-black text-xl">{{ hotel.minPrice |
+                                        currency:hotel.currency }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div *ngIf="!isLoading && hotels.length === 0"
+                class="flex flex-col items-center justify-center py-20 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
+                <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-hotel text-3xl text-blue-300"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-700">No hotels found</h3>
+                <p class="text-slate-500">Try checking different dates or cities</p>
+            </div>
+        </div>
+
+        <!-- ==================== AIRPORTS TAB ==================== -->
+        <div *ngIf="activeTab === 'airports'" class="space-y-8 animate-fadeIn">
+            <!-- Glass Search Form -->
+            <div
+                class="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl shadow-blue-900/5 border border-white/50 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="group">
+                        <label
+                            class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Country</label>
+                        <div class="relative">
+                            <i class="fas fa-globe absolute left-4 top-3.5 text-blue-400"></i>
+                            <select [(ngModel)]="airportCountry"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none cursor-pointer font-medium text-slate-700">
+                                <option value="">Any Country</option>
+                                <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Airport
+                            Name</label>
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="airportName" type="text"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none font-medium text-slate-700 placeholder-slate-400"
+                                placeholder="e.g. Heathrow">
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button (click)="searchAirports()" [disabled]="isLoading"
+                            class="w-full h-[50px] bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <span *ngIf="isLoading" class="animate-spin">↻</span>
+                            Search Airports
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="airports.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div *ngFor="let airport of airports"
+                    class="bg-white/80 backdrop-blur p-6 rounded-2xl border border-white/50 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 font-black text-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            {{ airport.iataCode }}
+                        </div>
+                        <div class="px-2 py-1 bg-slate-100 rounded text-xs font-bold text-slate-500">{{ airport.icaoCode
+                            }}</div>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-800 mb-1 line-clamp-1">{{ airport.airportName }}</h4>
+                    <p class="text-sm text-slate-500 flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt text-blue-400"></i>
+                        {{ airport.city }}, {{ airport.country }}
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-100 text-xs font-mono text-slate-400">
+                        {{ airport.timezone }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== AIRLINES TAB ==================== -->
+        <div *ngIf="activeTab === 'airlines'" class="space-y-8 animate-fadeIn">
+            <div
+                class="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl shadow-blue-900/5 border border-white/50 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="group">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Airline
+                            Name</label>
+                        <div class="relative">
+                            <i class="fas fa-plane-tail absolute left-4 top-3.5 text-blue-400"></i>
+                            <input [(ngModel)]="airlineName" type="text"
+                                class="w-full pl-10 pr-4 py-3 bg-white/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none font-medium text-slate-700 placeholder-slate-400"
+                                placeholder="e.g. British Airways">
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button (click)="searchAirlines()" [disabled]="isLoading"
+                            class="w-full h-[50px] bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <span *ngIf="isLoading" class="animate-spin">↻</span>
+                            Search Airlines
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="airlines.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div *ngFor="let airline of airlines"
+                    class="bg-white/80 backdrop-blur p-6 rounded-2xl border border-white/50 shadow-sm hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center font-black text-slate-600 text-xl shadow-inner">
+                            {{ airline.iataCode }}
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-800">{{ airline.airlineName }}</h4>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="w-2 h-2 rounded-full" [class.bg-green-500]="airline.active"
+                                    [class.bg-red-500]="!airline.active"></span>
+                                <span class="text-xs font-medium" [class.text-green-600]="airline.active"
+                                    [class.text-red-600]="!airline.active">
+                                    {{ airline.active ? 'Active' : 'Inactive' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mt-4 bg-slate-50 p-3 rounded-xl">
+                        <div>
+                            <div class="text-[10px] uppercase font-bold text-slate-400">ICAO</div>
+                            <div class="font-mono font-bold text-slate-700">{{ airline.icaoCode }}</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] uppercase font-bold text-slate-400">Callsign</div>
+                            <div class="font-mono font-bold text-slate-700">{{ airline.callsign }}</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="text-[10px] uppercase font-bold text-slate-400">Origin</div>
+                            <div class="font-bold text-slate-700">{{ airline.country }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

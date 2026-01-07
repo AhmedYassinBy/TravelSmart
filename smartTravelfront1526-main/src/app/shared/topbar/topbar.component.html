@@ -1,0 +1,135 @@
+<!-- MODERN GLASSMORPHISM TOPBAR -->
+<nav class="bg-white/90 backdrop-blur-xl shadow-lg border-b border-red-100 px-6 py-4 sticky top-0 z-40">
+  <div class="flex items-center justify-between">
+    <!-- Left: Enhanced Title with Gradient -->
+    <div class="flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-rose-600 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <div>
+          <h5 class="text-lg font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
+            TravelSmart Administration
+          </h5>
+          <p class="text-xs text-gray-600 font-medium">Booking & Reservation System</p>
+        </div>
+      </div>
+      
+      <!-- Mobile: Compact Logo -->
+      <div class="lg:hidden">
+        <h5 class="text-lg font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
+          TravelSmart
+        </h5>
+      </div>
+    </div>
+
+    <!-- Right: User Section with Enhanced Design -->
+    <div class="flex items-center gap-4">
+      <!-- Notification Bell (Optional) -->
+      <button class="relative p-2 hover:bg-red-50 rounded-xl transition-all duration-300 group hidden md:block">
+        <svg class="w-6 h-6 text-gray-600 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+        </svg>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+      </button>
+
+      <!-- User Dropdown -->
+      <div class="relative" #dropdown>
+        <button
+          (click)="toggleDropdown()"
+          class="flex items-center gap-3 px-4 py-2 rounded-xl bg-gradient-to-r from-red-50 to-rose-50 hover:from-red-100 hover:to-rose-100 border border-red-200/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 shadow-sm hover:shadow-md group"
+        >
+          <!-- Avatar with Gradient Border -->
+          <div class="relative">
+            <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-rose-600 rounded-full flex items-center justify-center ring-2 ring-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <span class="text-white font-bold text-sm">{{ getInitials() }}</span>
+            </div>
+            <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+          </div>
+          
+          <!-- Username (Hidden on mobile) -->
+          <div class="hidden md:block text-left">
+            <p class="text-sm font-bold text-gray-800">{{ getFullName() }}</p>
+            <p class="text-xs text-gray-500">{{ getRoleDisplay() }}</p>
+          </div>
+          
+          <!-- Dropdown Arrow -->
+          <svg class="w-4 h-4 text-gray-600 group-hover:text-red-600 transition-colors" [class.rotate-180]="isOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Enhanced Dropdown Menu -->
+        <div 
+          *ngIf="isOpen"
+          class="absolute right-0 mt-3 w-72 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 overflow-hidden z-50 animate-fadeIn"
+        >
+          <!-- User Info Header -->
+          <div class="bg-gradient-to-r from-red-600 to-rose-600 p-6 text-white">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center ring-4 ring-white/30">
+                <span class="text-white font-bold text-lg">{{ getInitials() }}</span>
+              </div>
+              <div>
+                <h6 class="font-bold text-lg">{{ getFullName() }}</h6>
+                <p class="text-red-100 text-sm">{{ userInfo.email }}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span class="text-xs font-medium text-red-100">Online</span>
+            </div>
+          </div>
+
+          <!-- Menu Items -->
+          <div class="py-2">
+            <!-- Profile -->
+            <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-rose-50 transition-all duration-300 group">
+              <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-800">My Profile</p>
+                <p class="text-xs text-gray-500">View and edit profile</p>
+              </div>
+            </a>
+
+            <!-- Settings -->
+            <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-pink-50 transition-all duration-300 group">
+              <div class="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center group-hover:bg-rose-200 transition-colors">
+                <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-gray-800">Settings</p>
+                <p class="text-xs text-gray-500">Account preferences</p>
+              </div>
+            </a>
+
+            <!-- Divider -->
+            <div class="my-2 border-t border-gray-200"></div>
+
+            <!-- Logout -->
+            <button (click)="logout()" class="w-full flex items-center gap-3 px-6 py-3 text-red-600 hover:bg-red-50 transition-all duration-300 group">
+              <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+              </div>
+              <div class="text-left">
+                <p class="text-sm font-bold">Logout</p>
+                <p class="text-xs text-red-400">Sign out of your account</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

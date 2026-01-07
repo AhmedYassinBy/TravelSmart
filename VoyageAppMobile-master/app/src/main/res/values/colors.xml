@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_700">#673AB7</color>
+    <color name="sky_blue">#5BC0EB</color>
+    <color name="orange">#F57C00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="bg_light">#F5F7FA</color>
+    <color name="red_primary">#F44336</color> <!-- même rouge que Profile -->
+    <color name="gray">#757575</color>
+    <color name="gray_light">#E0E0E0</color>
+    <color name="primary">#1976D2</color>
+    
+    <!-- Couleurs pour les vols -->
+    <color name="primary_color">#1976D2</color>
+    <color name="background_color">#F5F7FA</color>
+
+</resources>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Smart - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <!-- Login Card -->
+    <div class="w-full max-w-5xl flex bg-white rounded-3xl shadow-2xl overflow-hidden relative">
+      <div class="absolute inset-0 bg-white/5 backdrop-blur-sm z-0 pointer-events-none"></div>
+
+      <!-- Left side - Form -->
+      <div class="w-full lg:w-1/2 flex flex-col justify-center px-8 lg:px-12 py-12 relative z-10">
+        <div class="w-full">
+          <!-- Logo and Title -->
+          <div class="mb-8">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+                <i class="fas fa-plane-departure text-white text-xl"></i>
+              </div>
+              <h1
+                class="text-3xl font-black bg-gradient-to-r from-blue-700 to-cyan-500 bg-clip-text text-transparent flex flex-col leading-none">
+                TravelSmart
+                <span class="text-xs font-medium text-gray-400 tracking-[0.3em] uppercase mt-1">Admin Portal</span>
+              </h1>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome Back</h2>
+            <p class="text-gray-500 font-medium">
+              Sign in to manage your global travel network
+            </p>
+          </div>
+
+          <!-- Form -->
+          <form class="space-y-6" (ngSubmit)="login()">
+            <!-- Username Input -->
+            <div class="group">
+              <label
+                class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">
+                Username
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <i class="fa-solid fa-user text-gray-300 group-focus-within:text-blue-500 transition-colors"></i>
+                </div>
+                <input [(ngModel)]="user.username" name="email" type="email" placeholder="Enter your username"
+                  class="w-full pl-12 pr-4 py-4 border border-gray-100 bg-gray-50 rounded-xl text-sm focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition-all shadow-sm"
+                  required />
+              </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="group">
+              <label
+                class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 group-focus-within:text-blue-600 transition-colors">
+                Password
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <i class="fa-solid fa-lock text-gray-300 group-focus-within:text-blue-500 transition-colors"></i>
+                </div>
+                <input [(ngModel)]="user.password" name="password" type="password" placeholder="Enter your password"
+                  class="w-full pl-12 pr-4 py-4 border border-gray-100 bg-gray-50 rounded-xl text-sm focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 outline-none transition-all shadow-sm"
+                  required />
+              </div>
+            </div>
+
+            <!-- Forgot Password Link -->
+            <div class="flex items-center justify-between pt-2">
+              <div class="flex items-center">
+                <input type="checkbox" id="remember"
+                  class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer">
+                <label for="remember" class="ml-2 text-sm text-gray-500 cursor-pointer select-none">Remember me</label>
+              </div>
+              <a routerLink="/forgot-password"
+                class="text-sm font-semibold text-blue-600 hover:text-blue-700 transition">
+                Forgot password?
+              </a>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit"
+              class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+              <span class="flex items-center justify-center gap-2">
+                <span>Sign In to Dashboard</span>
+                <i class="fas fa-arrow-right"></i>
+              </span>
+            </button>
+
+            <!-- Error Message -->
+            <div *ngIf="errorMessage"
+              class="flex items-center gap-3 p-4 bg-red-50 border border-red-100 rounded-xl animate-bounce-in">
+              <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-exclamation text-red-500 text-sm"></i>
+              </div>
+              <p class="text-sm text-red-600 font-medium">
+                {{ errorMessage }}
+              </p>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+      <!-- Right side - Illustration -->
+      <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-slate-900 p-12">
+        <!-- Dynamic Background Image -->
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop"
+            class="w-full h-full object-cover opacity-40 mix-blend-overlay">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-indigo-900/90 mix-blend-multiply"></div>
+        </div>
+
+        <div class="relative z-10 flex flex-col justify-between h-full text-white">
+          <div class="mt-8">
+            <span
+              class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold tracking-wider uppercase border border-white/20">Admin
+              Access</span>
+            <h2 class="text-5xl font-black mt-6 mb-4 leading-tight">Manage the <br /> World.</h2>
+            <p class="text-lg text-blue-200/80 max-w-md font-light leading-relaxed">
+              Your centralized control center for flights, hotels, and global travel operations.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <div class="text-3xl font-bold text-cyan-400 mb-1">24/7</div>
+              <div class="text-xs text-blue-200 uppercase tracking-wider">System Uptime</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <div class="text-3xl font-bold text-cyan-400 mb-1">Global</div>
+              <div class="text-xs text-blue-200 uppercase tracking-wider">API Integration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+package com.ahmedyassin.TravelSmart.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ChatRequest {
+    private String message;
+    private List<ChatMessageDto> history;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ChatMessageDto {
+        private String role; // "user" or "assistant"
+        private String content;
+    }
+}

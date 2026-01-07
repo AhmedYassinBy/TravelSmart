@@ -1,0 +1,355 @@
+{
+	"info": {
+		"name": "TravelSmart API - External Travel APIs",
+		"description": "Collection pour tester les endpoints qui consomment des APIs de voyage externes (Amadeus, AviationStack, Booking)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Airlines",
+			"item": [
+				{
+					"name": "Search Airlines - All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airlines/search",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airlines", "search"]
+						}
+					}
+				},
+				{
+					"name": "Search Airlines - By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airlines/search?airlineName=Emirates",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airlines", "search"],
+							"query": [
+								{
+									"key": "airlineName",
+									"value": "Emirates"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Airlines - Air France",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airlines/search?airlineName=Air France",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airlines", "search"],
+							"query": [
+								{
+									"key": "airlineName",
+									"value": "Air France"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Airports",
+			"item": [
+				{
+					"name": "Search Airports - All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airports/search",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airports", "search"]
+						}
+					}
+				},
+				{
+					"name": "Search Airports - France",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airports/search?country=France",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airports", "search"],
+							"query": [
+								{
+									"key": "country",
+									"value": "France"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Airports - Charles de Gaulle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airports/search?airportName=Charles",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airports", "search"],
+							"query": [
+								{
+									"key": "airportName",
+									"value": "Charles"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Airports - United Kingdom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/airports/search?country=United Kingdom",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "airports", "search"],
+							"query": [
+								{
+									"key": "country",
+									"value": "United Kingdom"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Hotels",
+			"item": [
+				{
+					"name": "Search Hotels Amadeus - Paris",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/hotels/search?cityCode=PAR",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "hotels", "search"],
+							"query": [
+								{
+									"key": "cityCode",
+									"value": "PAR",
+									"description": "Paris"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Hotels Amadeus - London",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/hotels/search?cityCode=LON",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "hotels", "search"],
+							"query": [
+								{
+									"key": "cityCode",
+									"value": "LON",
+									"description": "London"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Hotels Amadeus - New York",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/hotels/search?cityCode=NYC",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "hotels", "search"],
+							"query": [
+								{
+									"key": "cityCode",
+									"value": "NYC",
+									"description": "New York"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Hotels Booking - Paris",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/hotels/booking?destination=-553173&checkinDate=2025-01-15&checkoutDate=2025-01-20",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "hotels", "booking"],
+							"query": [
+								{
+									"key": "destination",
+									"value": "-553173",
+									"description": "Paris destination ID"
+								},
+								{
+									"key": "checkinDate",
+									"value": "2025-01-15",
+									"description": "Check-in date YYYY-MM-DD"
+								},
+								{
+									"key": "checkoutDate",
+									"value": "2025-01-20",
+									"description": "Check-out date YYYY-MM-DD"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Flights",
+			"item": [
+				{
+					"name": "Search Flights - Paris to New York",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/flights/search?origin=CDG&destination=JFK&departureDate=2025-12-31&adults=1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "flights", "search"],
+							"query": [
+								{
+									"key": "origin",
+									"value": "CDG",
+									"description": "Paris Charles de Gaulle"
+								},
+								{
+									"key": "destination",
+									"value": "JFK",
+									"description": "New York JFK"
+								},
+								{
+									"key": "departureDate",
+									"value": "2025-12-31",
+									"description": "YYYY-MM-DD"
+								},
+								{
+									"key": "adults",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Flights - London to Dubai",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/flights/search?origin=LHR&destination=DXB&departureDate=2025-06-15&adults=2",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "flights", "search"],
+							"query": [
+								{
+									"key": "origin",
+									"value": "LHR",
+									"description": "London Heathrow"
+								},
+								{
+									"key": "destination",
+									"value": "DXB",
+									"description": "Dubai International"
+								},
+								{
+									"key": "departureDate",
+									"value": "2025-06-15"
+								},
+								{
+									"key": "adults",
+									"value": "2"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Flights - Paris to Tokyo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/flights/search?origin=CDG&destination=NRT&departureDate=2025-08-01&adults=1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8085",
+							"path": ["api", "flights", "search"],
+							"query": [
+								{
+									"key": "origin",
+									"value": "CDG",
+									"description": "Paris Charles de Gaulle"
+								},
+								{
+									"key": "destination",
+									"value": "NRT",
+									"description": "Tokyo Narita"
+								},
+								{
+									"key": "departureDate",
+									"value": "2025-08-01"
+								},
+								{
+									"key": "adults",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}
+
